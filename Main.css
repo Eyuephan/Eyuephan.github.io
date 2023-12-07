@@ -1,0 +1,177 @@
+:root {
+    --card-height: 300px;
+    --card-width: calc(var(--card-height) / 1.5);
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(17, 14, 24);
+  }
+  .card {
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 36px;
+    perspective: 2500px;
+    margin: 0 50px;
+  }
+  
+  .cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .wrapper {
+    transition: all 0.5s;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    height: 400px;
+  }
+  
+  .card:hover .wrapper {
+    transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 35px 32px -8px rgba(97, 97, 97, 0.75);
+    -moz-box-shadow: 2px 35px 32px -8px rgba(23, 23, 23, 0.75);
+    border: 2px solid rgb(148, 148, 148); /* Hier wird eine weiße Border mit einer Breite von 2 Pixeln erstellt */
+    padding: 1px;
+  }
+  
+  .wrapper::before,
+  .wrapper::after {
+    content: "";
+    opacity: 0;
+    width: 100%;
+    height: 80px;
+    transition: all 0.5s;
+    position: absolute;
+    left: 0;
+  }
+  .wrapper::before {
+    top: 0;
+    height: 100%;
+    background-image: linear-gradient(
+      to top,
+      transparent 46%,
+      rgba(12, 13, 19, 0.5) 68%,
+      rgba(12, 13, 19) 97%
+    );
+  }
+  .wrapper::after {
+    bottom: 0;
+    opacity: 1;
+    background-image: linear-gradient(
+      to bottom,
+      transparent 46%,
+      rgba(12, 13, 19, 0.5) 68%,
+      rgba(12, 13, 19) 97%
+    );
+    
+  }
+  
+  .card:hover .wrapper::before,
+  .wrapper::after {
+    opacity: 1;
+  }
+  
+  .card:hover .wrapper::after {
+    height: 120px;
+  }
+  .title {
+    position: relative; /* Hier stelle ich sicher, dass die Position relativ ist */
+    bottom: -60px;
+    transition: transform 0.5s;
+}
+  .card:hover .title {
+    transform: translate3d(0%, -50px, 100px);
+  }
+  
+  .character {
+    width: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    position: absolute;
+    z-index: -1;
+    
+  }
+  
+  .card:hover .character {
+    opacity: 1;
+    transform: translate3d(0%, -90%, 00px);
+  }
+
+
+  /*NSE CSS*/ 
+
+
+
+  .card:hover .character-NSE {
+    opacity: 1;
+    transform: translate3d(0%, -90%, 00px);
+  }
+  
+  .title-NSE {
+    transition: transform 0.5s;
+    position: relative; /* Hier stelle ich sicher, dass die Position relativ ist */
+    bottom: -100px; /* Hier habe ich den Wert für die vertikale Position angepasst */
+  }
+  .card:hover .title-NSE {
+    transform: translate3d(0%, -50px, 100px);
+  }
+
+   /*DEEP CSS*/ 
+   .card:hover .character-Deep {
+    opacity: 1;
+    transform: translate3d(0%, -90%, 00px);
+  }
+  
+  .title-Deep{
+    transition: transform 0.5s;
+    position: relative; /* Hier stelle ich sicher, dass die Position relativ ist */
+    bottom: -20px; /* Hier habe ich den Wert für die vertikale Position angepasst */
+  }
+  .card:hover .title-Deep {
+    transform: translate3d(0%, -50px, 100px);
+  }
+
+  @media (max-width: 768px) {
+    body {
+      flex-direction: column;
+    }
+  
+      .card {
+        width: 90%; /* Die Breite der Karten für kleine Bildschirme anpassen */
+        margin: 20px auto; /* Zentriert die Karten und fügt vertikalen Abstand hinzu */
+        display: block; /* Stellt sicher, dass die Karten als Block-Elemente angezeigt werden */
+      }
+  
+      .wrapper, .character, .title {
+        /* Deaktiviert Animationen und Transformationen auf Mobilgeräten */
+        transform: none;
+        opacity: 1;
+      }
+  
+    .wrapper::before, .wrapper::after {
+      /* Anpassungen für die Overlay-Effekte auf kleinen Bildschirmen */
+      opacity: 1;
+    }
+  
+    /* Anpassungen für spezifische Stile wie .character-NSE, .title-NSE usw. */
+    .character-NSE, .title-NSE, .character-Deep, .title-Deep {
+      transform: none;
+      opacity: 1;
+    }
+  }
+  
